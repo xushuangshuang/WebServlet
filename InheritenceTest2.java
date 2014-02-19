@@ -1,4 +1,4 @@
-public class InteritenceTest2
+public class InheritenceTest2
 {
 	public static void main(String[] args)
 	{
