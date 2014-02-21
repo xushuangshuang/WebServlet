@@ -9,11 +9,5 @@ public class InternTest
 		Integer a = new Integer(b);
 		int c= a.intValue();
 		System.out.println(c);
-		
-
-		char ch = 'a';
-		Character dd = new Character(ch);
-		char ch1 =dd.charValue();
-		System.out.println(ch1);
 	}
 }
