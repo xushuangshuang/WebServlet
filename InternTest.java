@@ -7,7 +7,7 @@ public class InternTest
 
 		int b = 123;
 		Integer a = new Integer(b);
-		int c= a.intValue(a);
+		int c= a.intValue();
 		System.out.println(c);
 	}
 }
