@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.sql.ResultSet;
 
+
 public class WebServlet extends HttpServlet
 {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
@@ -100,7 +101,7 @@ public class WebServlet extends HttpServlet
 		Connection conn = null;
 		Statement stmt = null;		
 		String name = req.getParameter("name");
-		
+		String DeleteName = req.getParameter("delete");		
        		try
        		{
              		Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -128,8 +129,10 @@ public class WebServlet extends HttpServlet
 			String sql = "INSERT INTO xs(name) " + "VALUES('" + name + "');";
 			stmt.execute(sql);
 			resp.getWriter().println( "add  " + name + "  success");
-			
-				
+			String deletSql = "delete from xs "+" where name= '"+DeleteName+"'; ";
+			stmt.executeUpdate(deletSql);
+            		
+            		
 		}
 		catch(SQLException ex)
 		{
