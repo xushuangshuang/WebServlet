@@ -19,18 +19,33 @@ public class WebServlet extends HttpServlet
 	public void dopust(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
 	{
 		resp.setContentType("text/html; charset=UTF-8");
-		
-		String name = req.getParameter("name");
-		
-       	
-				
 		Connection conn = null;
 		Statement stmt = null;		
-		try
-		{
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		String name = req.getParameter("name");
+		
+       		try
+       		{
+             		Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/test?"
 							+ "user=root" + "&password=");
+			if(!conn.isClosed())
+			{
+				System.out.println("Connect data base success");
+			}
+			else
+			{
+				System.out.println("Connect data base fail");
+			}
+       		} 
+		catch (Exception ex)
+       		{
+            
+       		}
+				
+		
+		try
+		{
+			
 			stmt = conn.createStatement();
 			String sql = "INSERT INTO xs(name) " + "VALUES('" + name+ "');";
 			System.out.println("SQL: " + sql);
