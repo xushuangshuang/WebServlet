@@ -11,12 +11,12 @@ import java.sql.Statement;
 
 public class WebServlet extends HttpServlet
 {
-	public void doget(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
+	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
 	{
 	
 	}
 
-	public void dopust(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException
 	{
 		resp.setContentType("text/html; charset=UTF-8");
 		Connection conn = null;
@@ -27,14 +27,14 @@ public class WebServlet extends HttpServlet
        		{
              		Class.forName("com.mysql.jdbc.Driver").newInstance();
 			conn = DriverManager.getConnection("jdbc:mysql://localhost/test?"
-							+ "user=root" + "&password=");
+							 + "user=root" + "&password=");
 			if(!conn.isClosed())
 			{
-				System.out.println("Connect data base success");
+				resp.getWriter().println("Connect data base success");
 			}
 			else
 			{
-				System.out.println("Connect data base fail");
+				resp.getWriter().println("Connect data base fail");
 			}
        		} 
 		catch (Exception ex)
@@ -47,10 +47,10 @@ public class WebServlet extends HttpServlet
 		{
 			
 			stmt = conn.createStatement();
-			String sql = "INSERT INTO xs(name) " + "VALUES('" + name+ "');";
+			String sql = "INSERT INTO xs(name) " + "VALUES(name);";
 			System.out.println("SQL: " + sql);
 			stmt.execute(sql);
-			resp.getWriter().println( name + "success");
+			resp.getWriter().println( "add  " + name + "  success");
 				
 		}
 		catch(SQLException ex)
