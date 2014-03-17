@@ -44,7 +44,7 @@ public class WebServlet extends HttpServlet
                 		resp.getWriter().println("<tr><td>" +firstName + " "  + "</td></tr>\n");
             		}
             			resp.getWriter().println("</table>");
-            			resp.getWriter().println("<p><a href=\".\"><button>Add member</button></a></p>");
+            			resp.getWriter().println("<p><a href=\".\"><button>返回</button></a></p>");
             			resp.getWriter().println("</body></html>");
        		} 
 			catch (SQLException ex)
@@ -101,7 +101,9 @@ public class WebServlet extends HttpServlet
 		Connection conn = null;
 		Statement stmt = null;		
 		String name = req.getParameter("name");
-		String DeleteName = req.getParameter("delete");		
+		String DeleteName = req.getParameter("delete");
+		String Search = req.getParameter("search");
+		resp.getWriter().println("<html><head><title>information</title></head><body><h1>information</h1>							\n");		
        		try
        		{
              		Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -109,7 +111,7 @@ public class WebServlet extends HttpServlet
 							 + "user=root" + "&password=");
 			if(!conn.isClosed())
 			{
-				resp.getWriter().println("Connect data base success");
+			//	resp.getWriter().println("Connect data base success");
 			}
 			else
 			{
@@ -124,14 +126,43 @@ public class WebServlet extends HttpServlet
 		
 		try
 		{
-			
 			stmt = conn.createStatement();
-			String sql = "INSERT INTO xs(name) " + "VALUES('" + name + "');";
-			stmt.execute(sql);
-			resp.getWriter().println( "add  " + name + "  success");
-			String deletSql = "delete from xs "+" where name= '"+DeleteName+"'; ";
-			stmt.executeUpdate(deletSql);
+			if(name.equals(null) == false)
+			{
+				String sql = "INSERT INTO xs(name) " + "VALUES('" + name + "');";
+				stmt.execute(sql);
+				resp.getWriter().println( "add  " + name + "  success");
+			}
+			
+			if(DeleteName.equals(null) == false)
+			{
+				String deletSql = "delete from xs "+" where name= '"+DeleteName+"'; ";
+				stmt.executeUpdate(deletSql);
+				resp.getWriter().println( "Delete  " + DeleteName + "  success");
+			}
+			if(Search.equals(null) == false)
+			{
+				String sql = "select * from xs";     
+              			ResultSet rs = stmt.executeQuery(sql);    
             		
+            			while (rs.next())
+		       		{
+                       			String name3 = rs.getString("name"); 
+		       			if(name3.equals(Search))
+					{	
+      						resp.getWriter().println("ture");
+						break;
+					}
+					else
+					{
+						resp.getWriter().println("false");
+						break;
+					}		
+           			}  
+			}
+			resp.getWriter().println("<p><a href=\"\"><button>继续操作</button></a></p>");
+			resp.getWriter().println("<p><a href=\"/member/\"><button>member list</button></a></p>");
+            		resp.getWriter().println("</body></html>");	
             		
 		}
 		catch(SQLException ex)
