@@ -1,0 +1,11 @@
+package com.bodejidi;
+
+public class Client
+{
+	public static void main(String[] args)
+	{
+		LifeStyle life = new LifeStyle();
+	       Envirment envirment = new Envirment(life);
+       		System.out.println(envirment.book(1, 2));	       
+	}
+}

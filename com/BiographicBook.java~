@@ -1,0 +1,9 @@
+package com.bodejidi;
+
+public class BiographicBook implements Stragegy
+{
+	public int book(int c, int d)
+	{
+		return (c * d);
+	}
+}

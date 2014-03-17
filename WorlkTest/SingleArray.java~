@@ -1,0 +1,12 @@
+import java.lang.reflect.Array;
+
+public class SingleArray
+{
+	public static void main(String[] args)
+	{
+		Object obj = Array.newInstance(Integer.TYPE, 10);
+		Array.set(obj, 5, 88);
+		int[] array = (int[])obj; 
+		System.out.println(array[5]);
+	}
+}

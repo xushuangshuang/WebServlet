@@ -1,0 +1,17 @@
+import java.lang.reflect.Array;
+
+public class ReflectArray
+{
+	public static void main(String[] args)
+	{
+		int[] adm = new int[]{5, 7, 10};
+		Object array = Array.newInstance(Integer.TYPE, adm);
+		Object obj1 = Array.get(array, 3);
+		obj1 = Array.get(obj1, 4);
+		Array.setInt(obj1, 5, 10);
+		int[][][] arrayCast = (int[][][]) array;
+		System.out.println(arrayCast[3][4][5]);
+
+	}
+
+}
