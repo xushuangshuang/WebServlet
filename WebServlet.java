@@ -130,7 +130,7 @@ public class WebServlet extends HttpServlet
 			if(name.equals(null) == false)
 			{
 				String sql = "INSERT INTO xs(name) " + "VALUES('" + name + "');";
-				stmt.execute(sql);
+				stmt.executeUpdate(sql);
 				resp.getWriter().println( "add  " + name + "  success");
 			}
 			
@@ -161,7 +161,7 @@ public class WebServlet extends HttpServlet
            			}  
 			}
 			resp.getWriter().println("<p><a href=\"\"><button>继续操作</button></a></p>");
-			resp.getWriter().println("<p><a href=\"/member/\"><button>member list</button></a></p>");
+			resp.getWriter().println("<p><a href=\"\"><button>member list</button></a></p>");
             		resp.getWriter().println("</body></html>");	
             		
 		}
